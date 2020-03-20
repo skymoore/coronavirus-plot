@@ -1,5 +1,7 @@
 # coronavirus-plot
-## Version: 1.0.11
+## Version: 1.0.12
+## Description:
+Easily make a coronavirus plot for your area.
 ## Install:
 `pip3 install coronavirus-plot`
 

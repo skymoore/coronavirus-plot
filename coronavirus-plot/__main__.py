@@ -9,8 +9,8 @@ def get_file(csv_url):
     return csv.DictReader(requests.get(csv_url).iter_lines(decode_unicode=True))
 
 
-def plot_data(csv_url_key, choice):
-
+def plot_data(csv_url_key, plot, choice):
+    returned_plot = None
     data_file = get_file(csv_urls[csv_url_key])
 
     for row in data_file:
@@ -24,16 +24,18 @@ def plot_data(csv_url_key, choice):
 
             if len(x_axis) == len(y_axis) and len(y_axis) > 0:
                 print(f'plotting {csv_url_key} cases')
-                plt.plot(x_axis, y_axis, label=csv_url_key)
+                returned_plot, = plot.plot(x_axis, y_axis, label=csv_url_key)
 
-                for i, v in zip(x_axis, y_axis):
-                    plt.text(i, v, str(v))
+                for x, y in zip(x_axis, y_axis):
+                    plot.text(x, y, str(y))
             else:
                 print(f'no {csv_url_key} cases reported')
+    
+    return returned_plot
 
 
 def main():
-
+    figures = []
     print("Welcome to the Corona Data CLI")
     input("Press any key to select a location...")
     # get list of available locations
@@ -70,19 +72,33 @@ def main():
 
     # plot the data
     for csv_url in csv_urls:
-        plot_data(csv_url, choice)
+        fig = plt.figure()
+        if choice[lil_key] == '':
+            plot = fig.add_subplot(1,1,1,
+                                   title=choice[big_key],
+                                   xlabel='date',
+                                   ylabel='count')
 
-    # configure the figure and show the plot
-    plt.xlabel('date')
-    plt.ylabel('count')
-    if choice[lil_key] == '':
-        plt.title(choice[big_key])
+        else:
+            plot = fig.add_subplot(1,1,1,
+                                   title=choice[lil_key] + ' ' + choice[big_key],
+                                   xlabel='date',
+                                   ylabel='count')
 
-    else:
-        plt.title(choice[lil_key] + ' ' + choice[big_key])
+        the_plot = plot_data(csv_url, plot, choice)
+        if the_plot is not None:
+            # configure the figure and show the plot
+            plot.set_label(csv_url)
+            plot.legend()
+            fig.show()
+        figures.append(fig)
 
-    plt.legend()
-    plt.show()
 
+    input("Press any key to continue, plots will be closed...")
+        
+    for a_fig in figures:
+        plt.close(a_fig)
+        
+    figures.clear()
 
-main()
+main()   
