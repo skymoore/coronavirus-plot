@@ -1,5 +1,5 @@
 # coronavirus-plot
-## Version: 1.0.12
+## Version: 1.0.13
 ## Description:
 Easily make a coronavirus plot for your area.
 ## Install:
