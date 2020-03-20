@@ -38,6 +38,6 @@ setup(
     name="coronavirus-plot",
     packages=find_packages(include=["coronavirus-plot"]),
     url="https://github.com/mskymoore/coronavirus-plot",
-    version="1.0.10",
+    version="1.0.11",
     zip_safe=False,
 )
