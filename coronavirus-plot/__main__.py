@@ -72,18 +72,22 @@ def main():
 
     # plot the data
     for csv_url in csv_urls:
-        fig = plt.figure()
+        if choice[lil_key] == '':
+            fig = plt.figure(num=csv_url + ' cases in ' + choice[big_key])
+        else:
+            fig = plt.figure(num=csv_url + ' cases in ' + choice[lil_key] + ' - ' + choice[big_key])
+
         if choice[lil_key] == '':
             plot = fig.add_subplot(1,1,1,
                                    title=choice[big_key],
                                    xlabel='date',
-                                   ylabel='count')
+                                   ylabel='number of cases')
 
         else:
             plot = fig.add_subplot(1,1,1,
                                    title=choice[lil_key] + ' ' + choice[big_key],
                                    xlabel='date',
-                                   ylabel='count')
+                                   ylabel='number of cases')
 
         the_plot = plot_data(csv_url, plot, choice)
         if the_plot is not None:
