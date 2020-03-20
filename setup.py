@@ -24,8 +24,7 @@ setup(
         "Natural Language :: English",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3",
-        "Topic :: Sceintific/Engineering :: Visualization",
+        "Programming Language :: Python :: 3"
     ],
     description="Terminal application to create a plot of coronavirus data for a user selected location.",
     include_package_data=True,
