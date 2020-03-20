@@ -1,5 +1,5 @@
 # coronavirus-plot
-## Version: 1.0.8
+## Version: 1.0.10
 ## Install:
 `pip3 install coronavirus-plot`
 

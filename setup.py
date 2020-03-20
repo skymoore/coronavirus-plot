@@ -12,7 +12,7 @@ def read(*parts):
         return fp.read()
 
 
-with open("README.md") as readme_file:
+with open("Readme.md") as readme_file:
     readme = readme_file.read()
 
 setup(
@@ -38,6 +38,6 @@ setup(
     name="coronavirus-plot",
     packages=find_packages(include=["coronavirus-plot"]),
     url="https://github.com/mskymoore/coronavirus-plot",
-    version="1.0.8",
+    version="1.0.10",
     zip_safe=False,
 )
